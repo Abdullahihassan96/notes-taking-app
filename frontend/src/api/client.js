@@ -1,7 +1,9 @@
-import axios from 'axios'
+import axios from "axios";
 
-const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+//in production, we make this dynamic i.e no localhost
+const BASE_URL =
+  import.meta.env.MODE === "development" ? "http://localhost:5000" : "/api";
 
 export const api = axios.create({
-  baseURL
-})
+  baseURL: BASE_URL,
+});

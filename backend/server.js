@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 // Health check
-app.get("/api/health", (req, res) => {
+app.get("/health", (req, res) => {
   res.json({
     ok: true,
     service: "mern-notes-backend",
@@ -34,7 +34,7 @@ app.get("/api/health", (req, res) => {
 });
 
 // Routes
-app.use("/api/notes", noteRoutes);
+app.use("/notes", noteRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));

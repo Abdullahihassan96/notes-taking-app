@@ -1,20 +1,25 @@
 import Note from "../models/Note.js";
 
-export async function createNote(req, res, next) {
+export const createNote = async (req, res, next) => {
   try {
     const { title, content = "", tags = [], pinned = false } = req.body;
     if (!title || !title.trim()) {
       res.status(400);
       throw new Error("Title is required");
     }
-    const note = await Note.create({ title: title.trim(), content, tags, pinned });
+    const note = await Note.create({
+      title: title.trim(),
+      content,
+      tags,
+      pinned,
+    });
     res.status(201).json(note);
   } catch (err) {
     next(err);
   }
-}
+};
 
-export async function getNotes(req, res, next) {
+export const getNotes = async (req, res, next) => {
   try {
     const { q, tag, pinned } = req.query;
     const filter = {};
@@ -33,9 +38,9 @@ export async function getNotes(req, res, next) {
   } catch (err) {
     next(err);
   }
-}
+};
 
-export async function getNoteById(req, res, next) {
+export const getNoteById = async (req, res, next) => {
   try {
     const note = await Note.findById(req.params.id);
     if (!note) {
@@ -46,9 +51,9 @@ export async function getNoteById(req, res, next) {
   } catch (err) {
     next(err);
   }
-}
+};
 
-export async function updateNote(req, res, next) {
+export const updateNote = async (req, res, next) => {
   try {
     const { title, content, tags, pinned } = req.body;
     const note = await Note.findById(req.params.id);
@@ -67,9 +72,9 @@ export async function updateNote(req, res, next) {
   } catch (err) {
     next(err);
   }
-}
+};
 
-export async function deleteNote(req, res, next) {
+export const deleteNote = async (req, res, next) => {
   try {
     const note = await Note.findById(req.params.id);
     if (!note) {
@@ -81,4 +86,4 @@ export async function deleteNote(req, res, next) {
   } catch (err) {
     next(err);
   }
-}
+};

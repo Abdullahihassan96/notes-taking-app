@@ -34,7 +34,7 @@ app.get("/api/health", (req, res) => {
 });
 
 // Routes
-app.use("/api/notes", noteRoutes);
+app.use("/notes", noteRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));

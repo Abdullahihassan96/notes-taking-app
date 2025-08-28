@@ -15,7 +15,7 @@ Express + MongoDB API for a simple notes app.
 
 ```bash
 cd backend
-cp .env.example .env
+
 # edit .env to add your Mongo connection
 npm install
 npm run dev
